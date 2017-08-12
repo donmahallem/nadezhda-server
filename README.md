@@ -1,6 +1,6 @@
-# NodePihole
+# Nadezhda-Server
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/01911f9b27f7480780cd22cf1459936c)](https://www.codacy.com/app/donmahallem/NodePihole?utm_source=github.com&utm_medium=referral&utm_content=donmahallem/NodePihole&utm_campaign=badger) [![Build Status](https://travis-ci.org/donmahallem/NodePihole.svg?branch=master)](https://travis-ci.org/donmahallem/NodePihole) [![Coverage Status](https://coveralls.io/repos/github/donmahallem/NodePihole/badge.svg?branch=master)](https://coveralls.io/github/donmahallem/NodePihole?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c2536e396a9e456f969290fd1c8ff94d)](https://www.codacy.com/app/donmahallem/nadezhda-server?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=donmahallem/nadezhda-server&amp;utm_campaign=Badge_Grade) [![Build Status](https://travis-ci.org/donmahallem/nadezhda-server.svg?branch=master)](https://travis-ci.org/donmahallem/nadezhda-server) [![Coverage Status](https://coveralls.io/repos/github/donmahallem/nadezhda-server/badge.svg)](https://coveralls.io/github/donmahallem/nadezhda-server)
 
 
 This is a rewrite of the Pi Hole Admin interface and backend in a Node Server
