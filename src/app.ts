@@ -4,7 +4,7 @@ import * as bodyParser from "body-parser";
 import * as serveStatic from "serve-static";
 import * as cookieParser from "cookie-parser";
 import { apiRoute } from "./routes";
-
+import * as helmet from "helmet";
 
 /**
  * The pihole app
@@ -22,6 +22,7 @@ export class PiholeApp {
     constructor(port: number = 3000) {
         this._port = port;
         this.app = express();
+        this.app.use(helmet())
         this.http = http.createServer(this.app);
         this.app.use(bodyParser.json());
         //this.app.use("/static", serveStatic(__dirname + "/static"));

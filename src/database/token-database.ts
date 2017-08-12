@@ -2,13 +2,13 @@ import {
     User,
     TokenPair
 } from "./../models";
-import { randomBytes } from "crypto";
+import * as crypto from "crypto";
 
 export class TokenDatabase {
 
-    public static randomBytes(length: number): Promise<string> {
+    public static randomBytes(length: number = 256): Promise<string> {
         return new Promise<string>((resolve, reject) => {
-            randomBytes(256, (err, buf) => {
+            crypto.randomBytes(length, (err, buf) => {
                 if (err) {
                     reject(err);
                 } else {
