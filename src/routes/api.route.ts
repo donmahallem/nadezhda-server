@@ -6,8 +6,6 @@ import * as through2 from "through2"
 import { RouteError } from "./route-error";
 import * as moment from "moment";
 import { QueryTypes } from "./../models";
-import { Api } from "./api";
-import { Middlewares } from "./middlewares";
 import * as authRoute from "./auth.route";
 
 /**
@@ -101,6 +99,6 @@ router.use(function (req, res, next) {
 router.use("/auth", authRoute);
 
 
-router.use(Api.catchError);
+//router.use(Api.catchError);
 
 export = router;

@@ -4,11 +4,8 @@ import * as express from "express";
 import * as readline from "readline";
 import * as through2 from "through2"
 import { RouteError } from "./route-error";
-import { LogHelper } from "./../helper/log-helper";
 import * as moment from "moment";
 import { QueryTypes } from "./../models";
-import { Api } from "./api";
-import { Middlewares } from "./middlewares";
 import {
     Validator,
     Schema,
@@ -137,6 +134,5 @@ router.post("/authorize", (req: express.Request, res: express.Response, next: ex
 router.post("/token", (req: express.Request, res: express.Response, next: express.NextFunction) => {
 
 });
-router.use(Api.catchError);
 
 export = router;
