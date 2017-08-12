@@ -1,0 +1,28 @@
+{
+  "name": "piholeWebInterface",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "donmahallem <m@m.m0k.eu>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/donmahallem/NodePihole",
+  "private": true,
+  "dependencies": {
+    "moment": "^2.17.1",
+    "jquery": "^3.1.1",
+    "chart.js": "^2.5.0",
+    "angular-chart.js": "^1.1.1",
+    "angular-jwt": "^0.1.9",
+    "angular-moment": "^1.0.1",
+    "compare-versions": "^3.0.0",
+    "AdminLTE": "admin-lte#^2.3.11",
+    "Ionicons": "ionicons#^2.0.1",
+    "bootstrap": "^3.3.7",
+    "angular-route": "^1.6.2",
+    "font-awesome": "fontawesome#^4.7.0",
+    "datatables.net-bs": "^2.1.1",
+    "datatables.net": "^2.1.1",
+    "angular-datatables": "0.6.0"
+  }
+}
