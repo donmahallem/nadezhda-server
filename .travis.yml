@@ -3,7 +3,5 @@ node_js:
   - "7"
   - "6"
   - "6.0"
-  - "5"
-  - "5.0"
 script: "npm run-script test-ci"
 after_script: "npm install coveralls && cat ./coverage/lcov.info | coveralls"
