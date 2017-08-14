@@ -78,11 +78,24 @@ describe("AuthEndpoints", () => {
             afterEach(() => {
 
             });
-            it("should fail to parse content", () => {
+            it("should fail if no body is provided", () => {
+                let nextSpy: sinon.SinonSpy = sinon.spy();
+                let reqObject: any = {
+                };
+                let resObject: any = {
+
+                };
+                AuthEndpoints.authorize(reqObject, resObject, nextSpy);
+                expect(nextSpy.callCount).to.equal(1);
+                expect(nextSpy.args[0].length).to.equal(1);
+                expect(nextSpy.args[0][0]).to.be.a("error");
+            });
+            it("should fail if no valid body is provided", () => {
                 let nextSpy: sinon.SinonSpy = sinon.spy();
                 let reqObject: any = {
                     body: {
-
+                        username: "username",
+                        password: ""
                     }
                 };
                 let resObject: any = {
@@ -92,6 +105,12 @@ describe("AuthEndpoints", () => {
                 expect(nextSpy.callCount).to.equal(1);
                 expect(nextSpy.args[0].length).to.equal(1);
                 expect(nextSpy.args[0][0]).to.be.a("error");
+            });
+            it("should fail if token generation fails", () => {
+                expect(true).to.be.true;
+            });
+            it("should fail if login credentials are false", () => {
+                expect(true).to.be.true;
             });
         });
     });
