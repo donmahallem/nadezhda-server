@@ -9,8 +9,6 @@ import {
 } from "./../models/";
 
 export class UserDatabase {
-
-    private readonly USER_DATABASE_NAME = "user.db";
     private databasePool: Pool;
     constructor() {
         let config: PoolConfig = {
@@ -22,53 +20,7 @@ export class UserDatabase {
             max: 4
         }
         this.databasePool = new Pool(config);
-
-        this.databasePool.connect()
-            .then(client => {
-
-                client.query('SELECT $1::text as message', ['Hello world!'], (err, res) => {
-                    console.log(err ? err.stack : res.rows[0].message) // Hello World!
-                    client.end()
-                })
-            });
-
     }
-    /*
-        private get database(): sqlite3.Database {
-            return this.userDb;
-        }
-    
-        public updatePassword(user: string, password: string): Promise<Boolean> {
-            return new Promise<Boolean>((resolve, reject) => {
-                let stmt: sqlite3.Statement = this.userDb.prepare("")
-            });
-        }
-    
-        public prepareStatement(statement: string): Promise<sqlite3.Statement> {
-            return new Promise<sqlite3.Statement>((resolve, reject) => {
-                let pStatement2 = this.userDb.prepare(statement, (pStatement, error) => {
-                    console.log("a", pStatement2, error, statement);
-                    if (error) {
-                        reject(error);
-                    } else {
-                        resolve(pStatement);
-                    }
-                });
-            });
-        }
-    
-        private runStatement(statement: sqlite3.Statement, ...args: any[]): Promise<sqlite3.RunResult> {
-            return new Promise<sqlite3.RunResult>((resolve, reject) => {
-                statement.run(args, (result: sqlite3.RunResult, error: Error) => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        resolve(result);
-                    }
-                });
-            });
-        }
-    */
 
     public initDatabase(): Promise<Boolean> {
         return this.databasePool.connect()

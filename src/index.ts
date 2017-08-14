@@ -1,6 +1,8 @@
 import { PiholeApp } from "./app";
 
 import { UserDatabase } from "./database/user-database";
+import { NadezhdaConfig } from "./config";
+
 /*
 
 let db = new UserDatabase();
@@ -24,6 +26,6 @@ db.createUser("user", "password")
         console.error(err);
     })*/
 
-let app: PiholeApp = new PiholeApp(3000);
+let app: PiholeApp = new PiholeApp(NadezhdaConfig.port);
 
 app.start();

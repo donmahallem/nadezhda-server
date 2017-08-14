@@ -29,6 +29,7 @@ export class PiholeApp {
         this.app.use("/api", apiRoute);
         this.app.use(function (err, req, res, next) {
             console.log("Request errored", err);
+            res.send("Error request");
         });
     }
 

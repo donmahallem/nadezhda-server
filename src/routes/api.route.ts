@@ -5,7 +5,6 @@ import * as readline from "readline";
 import * as through2 from "through2"
 import { RouteError } from "./route-error";
 import * as moment from "moment";
-import { QueryTypes } from "./../models";
 import * as authRoute from "./auth.route";
 
 /**

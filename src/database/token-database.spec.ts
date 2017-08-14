@@ -45,8 +45,12 @@ describe("TokenDatabase", () => {
         afterEach(() => {
             sandbox.restore();
         });
-        it("should generate a random hash", () => {
-            let user: User = new User();
+        it("should generate a token pair", () => {
+            let user: User = {
+                name: "username",
+                created: "1.1.2017",
+                id: "longid"
+            }
             return TokenDatabase.generateToken(user)
                 .then(result => {
                     expect(result).to.not.be.null;

@@ -1,22 +1,11 @@
 /*eslint no-console: ["error", { allow: ["warn", "error", "log"] }] */
 
 import * as express from "express";
-import * as readline from "readline";
-import * as through2 from "through2"
 import { RouteError } from "./route-error";
-import * as moment from "moment";
-import { QueryTypes } from "./../models";
+
 import {
-    Validator,
-    Schema,
-    ValidatorResult
-} from "jsonschema";
-import {
-    UserDatabase
-} from "./../database/user-database";
-import {
-    TokenDatabase
-} from "./../database/token-database";
+    AuthEndpoints
+} from "./auth-endpoints";
 /**
  * @apiDefine NotAuthorized
  * @apiError NotAuthorized The requester is not authorized to access this endpoint
@@ -72,7 +61,6 @@ import {
  */
 let router = express.Router();
 
-let db: UserDatabase = new UserDatabase();
 
 /**
  * @api {get} /api/data/queryTypes Get Querytypes
@@ -101,38 +89,7 @@ let db: UserDatabase = new UserDatabase();
  * @apiUse InvalidRequest
  * @apiUse NotAuthorized
  */
-router.post("/authorize", (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const validator: Validator = new Validator();
-    const loginDataSchema: Schema = {
-        "id": "/LoginDataSubmission",
-        "type": "object",
-        "properties": {
-            "name": { "type": "string" },
-            "password": { "type": "string" }
-        },
-        "required": ["password", "name"]
-    };
-    const validatorResult: ValidatorResult = validator.validate(req.body, loginDataSchema);
+router.post("/authorize", AuthEndpoints.authorize);
 
-    if (validatorResult.valid) {
-        db.checkLogin(req.body.name, req.body.password)
-            .then(result => {
-                return TokenDatabase.generateToken(result)
-                    .then(tokens => {
-                        return Object.assign(result, tokens);
-                    });
-            })
-            .then(result => {
-                res.json(result);
-            }).catch(err => {
-                next(err);
-            });
-    } else {
-        next(validatorResult.errors[0]);
-    }
-});
-router.post("/token", (req: express.Request, res: express.Response, next: express.NextFunction) => {
-
-});
-
+router.post("/token", AuthEndpoints.token);
 export = router;
