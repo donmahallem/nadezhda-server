@@ -9,8 +9,8 @@ import {
 } from "./../models/";
 
 export class UserDatabase {
-    private databasePool: Pool;
-    constructor() {
+    private static databasePool: Pool;
+    public static initDatabase(): Promise<Boolean> {
         let config: PoolConfig = {
             user: "postgres",
             database: "nadezhda",
@@ -20,9 +20,6 @@ export class UserDatabase {
             max: 4
         }
         this.databasePool = new Pool(config);
-    }
-
-    public initDatabase(): Promise<Boolean> {
         return this.databasePool.connect()
             .then(client => {
                 return client.query("CREATE SCHEMA IF NOT EXISTS nadezhda;")
@@ -40,7 +37,7 @@ export class UserDatabase {
             });
     }
 
-    public checkLogin(user: string, password: string): Promise<User> {
+    public static checkLogin(user: string, password: string): Promise<User> {
         return this.databasePool.connect().then(client => {
             const queryText: string = "SELECT _name AS name, _created AS created, _id as ID FROM nadezhda.users WHERE _name = $1 AND _password = crypt($2, _password);";
             const queryValues: any[] = [user, password];
@@ -60,7 +57,7 @@ export class UserDatabase {
         });
     }
 
-    public createUser(user: string, password: string): Promise<string> {
+    public static createUser(user: string, password: string): Promise<string> {
         return this.databasePool.connect().then(client => {
             const queryText: string = "INSERT INTO nadezhda.users (_name, _password, _created) VALUES($1, crypt($2, gen_salt('bf', 8)), now()) RETURNING _id;";
             const queryValues: any[] = [user, password];

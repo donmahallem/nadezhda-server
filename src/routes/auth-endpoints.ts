@@ -16,8 +16,6 @@ import {
     TokenDatabase
 } from "./../database/token-database";
 
-let db: UserDatabase = new UserDatabase();
-
 export class AuthEndpoints {
     public static authorize: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
         const validator: Validator = new Validator();
@@ -33,7 +31,7 @@ export class AuthEndpoints {
         const validatorResult: ValidatorResult = validator.validate(req.body, loginDataSchema);
 
         if (validatorResult.valid) {
-            db.checkLogin(req.body.name, req.body.password)
+            UserDatabase.checkLogin(req.body.name, req.body.password)
                 .then(result => {
                     return TokenDatabase.generateToken(result)
                         .then(tokens => {
@@ -43,6 +41,7 @@ export class AuthEndpoints {
                 .then(result => {
                     res.json(result);
                 }).catch(err => {
+                    console.log(err);
                     next(err);
                 });
         } else {
