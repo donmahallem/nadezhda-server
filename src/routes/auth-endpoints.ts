@@ -40,7 +40,6 @@ export class AuthEndpoints {
                     return TokenDatabase.generateToken(result)
                         .then(tokens => {
                             TokenDatabase.storeAccessToken(result, tokens).then((ret) => {
-                                console.log(ret);
                             })
                             return Object.assign(result, tokens);
                         });

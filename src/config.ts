@@ -14,7 +14,7 @@ export class NadezhdaDatabaseConfig {
     public static get port(): number {
         return nconf.get("database:port");
     }
-    public static get host(): number {
+    public static get host(): string {
         return nconf.get("database:host");
     }
     public static get username(): string {
@@ -28,6 +28,13 @@ export class NadezhdaDatabaseConfig {
     }
     public static get poolMax(): number {
         return nconf.get("database:pool:max");
+    }
+
+    /**
+     * Get the database name
+     */
+    public static get databaseName(): string {
+        return nconf.get("database:name");
     }
 }
 

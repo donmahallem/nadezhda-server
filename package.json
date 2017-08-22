@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --opts ./test/.mocha.opts src/**/*.spec.ts",
+    "test": "mocha --opts ./test/.mocha.opts src/**/*.spec.ts --config test/config.json",
     "start": "npm run build:live",
     "build:live": "nodemon",
     "build": "node ./node_modules/typescript/bin/tsc --outdir ./dist/ --baseUrl ./src/",

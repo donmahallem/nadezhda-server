@@ -7,8 +7,7 @@ import * as redis from "redis";
 import * as jwt from "jsonwebtoken";
 import { NadezhdaJwtConfig } from "./../config";
 
-
-interface TokenInfoPair {
+export interface TokenInfoPair {
     token: string;
     jwt_token: string
 }

@@ -7,17 +7,20 @@ import {
 import {
     User
 } from "./../models/";
+import {
+    NadezhdaDatabaseConfig
+} from "./../config";
 
 export class UserDatabase {
     private static databasePool: Pool;
     public static initDatabase(): Promise<Boolean> {
         let config: PoolConfig = {
-            user: "postgres",
-            database: "nadezhda",
-            password: "password",
-            host: "localhost",
-            min: 1,
-            max: 4
+            user: NadezhdaDatabaseConfig.username,
+            database: NadezhdaDatabaseConfig.databaseName,
+            password: NadezhdaDatabaseConfig.password,
+            host: NadezhdaDatabaseConfig.host,
+            min: NadezhdaDatabaseConfig.poolMin,
+            max: NadezhdaDatabaseConfig.poolMax
         }
         this.databasePool = new Pool(config);
         return this.databasePool.connect()
@@ -82,6 +85,28 @@ export class UserDatabase {
         });
     }
 
+    public static getUser(userId: string): Promise<User> {
+        return this.databasePool.connect().then(client => {
+            const queryText: string = "SELECT * FROM nadezhda.users WHERE _id = $1;";
+            const queryValues: any[] = [userId];
+            return client.query(queryText, queryValues)
+                .then(result => {
+                    client.release();
+                    if (result.rowCount > 1) {
+                        return Promise.reject(new Error("There should only be one row as result"));
+                    } else if (result.rowCount == 0) {
+                        return Promise.reject(new Error("User could not be found"));
+                    } else {
+                        return result.rows[0];
+                    }
+                })
+                .catch(error => {
+                    client.release();
+                    return Promise.reject(error);
+                });
+        });
+    }
+
     public static checkLogin(user: string, password: string): Promise<User> {
         return this.databasePool.connect().then(client => {
             const queryText: string = "SELECT _name AS name, _created AS created, _id as ID FROM nadezhda.users WHERE _name = $1 AND _password = crypt($2, _password);";
@@ -107,14 +132,14 @@ export class UserDatabase {
             const queryText: string = "INSERT INTO nadezhda.users (_name, _password, _created) VALUES($1, crypt($2, gen_salt('bf', 8)), now()) RETURNING _id;";
             const queryValues: any[] = [user, password];
             return client.query(queryText, queryValues)
-                .catch(error => {
-                    client.release();
-                    return error;
-                })
                 .then(result => {
                     client.release();
                     let row = result.rows[0];
                     return row._id;
+                })
+                .catch(error => {
+                    client.release();
+                    return Promise.reject(error);
                 });
         });
     }

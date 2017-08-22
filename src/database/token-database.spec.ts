@@ -1,4 +1,7 @@
-import { TokenDatabase } from "./token-database";
+import {
+    TokenDatabase,
+    TokenInfoPair
+} from "./token-database";
 import { expect } from "chai";
 import "mocha";
 import * as sinon from "sinon";
@@ -34,13 +37,24 @@ describe("TokenDatabase", () => {
         });
     });
     describe("generateToken", () => {
-        let randomBytesStub: sinon.SinonStub;
+        let createAccessTokenStub: sinon.SinonStub;
         const testAccessToken: string = "access_token_12345";
         const testRefreshToken: string = "refresh_token_12345";
+        let createRefreshTokenStub: sinon.SinonStub;
+        let storeTokenStub: sinon.SinonStub;
+        const createS = (value: string): Promise<TokenInfoPair> => {
+            return Promise.resolve({
+                "token": value,
+                "jwt_token": "jwt_" + value
+            });
+        }
         beforeEach(() => {
-            randomBytesStub = sandbox.stub(TokenDatabase, "randomBytes")
-                .onCall(0).returns(Promise.resolve(testAccessToken))
-                .onCall(1).returns(Promise.resolve(testRefreshToken));
+            createAccessTokenStub = sandbox.stub(TokenDatabase, "createAccessToken")
+                .returns(createS(testAccessToken))
+            createRefreshTokenStub = sandbox.stub(TokenDatabase, "createRefreshToken")
+                .returns(createS(testRefreshToken))
+            storeTokenStub = sandbox.stub(TokenDatabase, "storeAccessToken")
+                .returns(Promise.resolve(true));
         });
         afterEach(() => {
             sandbox.restore();
@@ -55,8 +69,8 @@ describe("TokenDatabase", () => {
                 .then(result => {
                     expect(result).to.not.be.null;
                     expect(result).to.deep.equal({
-                        "access_token": testAccessToken,
-                        "refresh_token": testRefreshToken
+                        "access_token": "jwt_" + testAccessToken,
+                        "refresh_token": "jwt_" + testRefreshToken
                     });
                     expect(result).to.not.be.null;
                 });

@@ -1,13 +1,10 @@
 /*eslint no-console: ["error", { allow: ["warn", "error", "log"] }] */
 
 import * as express from "express";
-import * as readline from "readline";
-import * as through2 from "through2"
-import { RouteError } from "./route-error";
-import * as moment from "moment";
-import * as authRoute from "./auth.route";
-import * as groupsRoute from "./groups/groups.route";
-import * as usersRoute from "./users/users.route";
+
+import {
+    UsersEndpoints
+} from "./users-endpoints";
 /**
  * @apiDefine NotAuthorized
  * @apiError NotAuthorized The requester is not authorized to access this endpoint
@@ -64,10 +61,6 @@ import * as usersRoute from "./users/users.route";
 let router = express.Router();
 
 
-router.use(function (req, res, next) {
-    res.setHeader("Content-Type", "application/json");
-    next();
-});
 /**
  * @api {get} /api/data/queryTypes Get Querytypes
  * @apiName GetDataQueryTypes
@@ -95,25 +88,7 @@ router.use(function (req, res, next) {
  * @apiUse InvalidRequest
  * @apiUse NotAuthorized
  */
-router.use("/auth", authRoute);
-router.use("/groups", groupsRoute);
-router.use("/users", usersRoute);
-
-const errorRoute: express.ErrorRequestHandler = (err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    if (err) {
-        res.statusCode = 501;
-        res.json({
-            "message": err.message
-        })
-    } else {
-        next();
-    }
-};
-
-
-router.use(errorRoute);
-
-
-//router.use(Api.catchError);
+router.post("", UsersEndpoints.create);
+router.get("/:userId", UsersEndpoints.getUser);
 
 export = router;
