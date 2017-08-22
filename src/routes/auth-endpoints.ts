@@ -16,6 +16,7 @@ import {
     TokenDatabase
 } from "./../database/token-database";
 
+
 export class AuthEndpoints {
     public static authorize: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
         if (!req.hasOwnProperty("body")) {
