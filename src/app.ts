@@ -5,6 +5,7 @@ import * as serveStatic from "serve-static";
 import * as cookieParser from "cookie-parser";
 import { apiRoute } from "./routes";
 import * as helmet from "helmet";
+import { UserDatabase } from "./database";
 
 /**
  * The pihole app
@@ -21,6 +22,9 @@ export class PiholeApp {
      */
     constructor(port: number = 3000) {
         this._port = port;
+        UserDatabase.initDatabase().then(() => {
+            console.log("initiated");
+        });
         this.app = express();
         this.app.use(helmet())
         this.http = http.createServer(this.app);

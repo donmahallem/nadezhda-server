@@ -10,7 +10,7 @@ nconf.argv({
 
 nconf.file({ file: nconf.get("config") });
 
-class NadezhdaDatabaseConfig {
+export class NadezhdaDatabaseConfig {
     public static get port(): number {
         return nconf.get("database:port");
     }
@@ -31,6 +31,15 @@ class NadezhdaDatabaseConfig {
     }
 }
 
+export class NadezhdaJwtConfig {
+    public static get secret(): string {
+        return nconf.get("jwt:secret");
+    }
+    public static get issuer(): string {
+        return nconf.get("jwt:issuer");
+    }
+}
+
 export class NadezhdaConfig {
 
     public static get host(): string {
@@ -40,6 +49,4 @@ export class NadezhdaConfig {
     public static get port(): number {
         return nconf.get("port");
     }
-
-    public readonly database: NadezhdaDatabaseConfig;
 }
