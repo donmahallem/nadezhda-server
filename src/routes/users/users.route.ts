@@ -88,7 +88,8 @@ let router = express.Router();
  * @apiUse InvalidRequest
  * @apiUse NotAuthorized
  */
-router.post("", UsersEndpoints.create);
+router.post("", UsersEndpoints.createUser);
 router.get("/:userId", UsersEndpoints.getUser);
+router.put("", UsersEndpoints.updateUser);
 
 export = router;

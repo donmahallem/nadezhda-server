@@ -39,8 +39,6 @@ export class AuthEndpoints {
                 .then(result => {
                     return TokenDatabase.generateToken(result)
                         .then(tokens => {
-                            TokenDatabase.storeAccessToken(result, tokens).then((ret) => {
-                            })
                             return Object.assign(result, tokens);
                         });
                 })

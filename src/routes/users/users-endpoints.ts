@@ -16,7 +16,30 @@ import {
     RouteError
 } from "./../";
 export class UsersEndpoints {
-    public static create: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
+    public static updateUser: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
+        if (!req.hasOwnProperty("body")) {
+            next(new Error("No body provided"));
+            return;
+        }
+        const validator: Validator = new Validator();
+        const updateUserDataSchema: Schema = {
+            "id": "/UpdateUserDataSubmission",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    minLength: 5,
+                    maxLength: 100
+                }
+            },
+            "required": ["id"]
+        };
+        res.json({
+            "message": "not implemented"
+        })
+    };
+
+    public static createUser: RequestHandler = (req: Request, res: Response, next: NextFunction) => {
         if (!req.hasOwnProperty("body")) {
             next(new Error("No body provided"));
             return;

@@ -52,7 +52,6 @@ export class UserDatabase {
             const queryValues: any[] = [groupTitle, groupDescription, user, parent];
             return client.query(queryText, queryValues)
                 .catch(error => {
-                    console.error(error);
                     client.release();
                     return error;
                 })
