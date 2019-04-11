@@ -30,7 +30,7 @@
     "@types/serve-static": "^1.7.31",
     "@types/sinon": "^2.3.3",
     "@types/sqlite3": "^3.1.0",
-    "@types/through2": "^2.0.32",
+    "@types/through2": "^2.0.34",
     "body-parser": "^1.15.2",
     "cookie": "^0.3.1",
     "cookie-parser": "^1.4.3",
