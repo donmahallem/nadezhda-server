@@ -23,7 +23,7 @@
     "@types/mocha": "^5.2.6",
     "@types/nconf": "0.0.34",
     "@types/node": "^11.13.4",
-    "@types/passport": "^0.3.3",
+    "@types/passport": "^1.0.0",
     "@types/passport-local": "^1.0.30",
     "@types/pg": "^6.1.43",
     "@types/redis": "^2.8.12",
