@@ -59,7 +59,7 @@
     "grunt": "^1.0.4",
     "grunt-apidoc": "^0.11.0",
     "grunt-contrib-pug": "^1.0.0",
-    "grunt-contrib-uglify": "^3.0.1",
+    "grunt-contrib-uglify": "^4.0.1",
     "grunt-jsbeautifier": "^0.2.13",
     "istanbul": "^0.4.5",
     "karma-typescript": "^3.0.8",
