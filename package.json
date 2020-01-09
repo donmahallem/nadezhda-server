@@ -22,7 +22,7 @@
     "@types/jsonwebtoken": "^8.3.5",
     "@types/mocha": "^5.2.7",
     "@types/nconf": "0.10.0",
-    "@types/node": "^13.1.4",
+    "@types/node": "^13.1.5",
     "@types/passport": "^1.0.2",
     "@types/passport-local": "^1.0.33",
     "@types/pg": "^7.14.1",
