@@ -27,7 +27,7 @@
     "@types/passport-local": "^1.0.33",
     "@types/pg": "^7.14.4",
     "@types/redis": "^2.8.25",
-    "@types/serve-static": "^1.13.4",
+    "@types/serve-static": "^1.13.5",
     "@types/sinon": "^9.0.4",
     "@types/sqlite3": "^3.1.6",
     "@types/through2": "^2.0.36",
