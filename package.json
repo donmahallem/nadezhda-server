@@ -62,7 +62,7 @@
     "grunt-contrib-uglify": "5.2.2",
     "grunt-jsbeautifier": "0.2.13",
     "istanbul": "0.4.5",
-    "karma-typescript": "5.5.3",
+    "karma-typescript": "5.5.4",
     "mocha": "10.2.0",
     "nodemon": "2.0.22",
     "nyc": "15.1.0",
