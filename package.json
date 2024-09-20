@@ -64,7 +64,7 @@
     "istanbul": "0.4.5",
     "karma-typescript": "5.5.4",
     "mocha": "10.7.3",
-    "nodemon": "3.1.6",
+    "nodemon": "3.1.7",
     "nyc": "17.1.0",
     "sinon": "19.0.2",
     "sinon-chai": "4.0.0",
