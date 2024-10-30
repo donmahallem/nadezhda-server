@@ -63,7 +63,7 @@
     "grunt-jsbeautifier": "0.2.13",
     "istanbul": "0.4.5",
     "karma-typescript": "5.5.4",
-    "mocha": "10.8.1",
+    "mocha": "10.8.2",
     "nodemon": "3.1.7",
     "nyc": "17.1.0",
     "sinon": "19.0.2",
