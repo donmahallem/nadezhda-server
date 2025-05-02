@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "chai": "5.2.0",
-    "chai-http": "5.1.1",
+    "chai-http": "5.1.2",
     "grunt": "1.6.1",
     "grunt-apidoc": "0.11.0",
     "grunt-contrib-pug": "3.0.0",
