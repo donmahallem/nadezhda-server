@@ -28,7 +28,7 @@
     "@types/pg": "^8.0.0",
     "@types/redis": "^4.0.0",
     "@types/serve-static": "^1.13.8",
-    "@types/sinon": "^17.0.0",
+    "@types/sinon": "^20.0.0",
     "@types/sqlite3": "^5.0.0",
     "@types/through2": "^2.0.36",
     "body-parser": "^2.0.0",
