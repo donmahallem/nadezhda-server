@@ -50,7 +50,7 @@
     "serve-static": "^2.0.0",
     "split2": "^4.0.0",
     "tail": "^2.0.4",
-    "through2": "^4.0.2",
+    "through2": "^5.0.0",
     "through2-spy": "^2.0.0"
   },
   "devDependencies": {
