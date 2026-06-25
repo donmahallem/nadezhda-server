@@ -32,7 +32,7 @@
     "@types/sqlite3": "^5.0.0",
     "@types/through2": "^2.0.36",
     "body-parser": "^2.0.0",
-    "cookie": "^1.0.0",
+    "cookie": "^2.0.0",
     "cookie-parser": "^1.4.5",
     "express": "^5.0.0",
     "helmet": "^8.0.0",
